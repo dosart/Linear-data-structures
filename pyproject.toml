@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "linear data structures"
+version = "0.1.0"
+description = "implementation of classic linear data structures"
+authors = ["Denis <Dysprosium92@ya.ru>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "data structure" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pytest = "^6.2.2"
+
+[tool.poetry.dev-dependencies]
+wemake-python-styleguide = "^0.15.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
