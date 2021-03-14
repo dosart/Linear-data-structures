@@ -2,9 +2,8 @@
 
 import pytest
 
-from data_structure.imperative_stack import make_stack, push, pop, is_empty, size
-
-from exceptions.stack_exceptions import StackIsEmptyExeption
+from data_structure.stack.imperative_stack import make_stack, push, pop, is_empty, size
+from data_structure.exceptions.stack_exceptions import StackIsEmptyExeption
 
 
 def test_make_stack():

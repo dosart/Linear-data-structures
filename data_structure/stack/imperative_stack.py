@@ -1,7 +1,7 @@
 """Stack implementation  using imperative style (only functions)."""
 
 
-from exceptions.stack_exceptions import StackIsEmptyExeption
+from data_structure.exceptions.stack_exceptions import StackIsEmptyExeption
 
 
 def make_stack():
