@@ -21,6 +21,7 @@ def test_push_positive():
     push(stack, 3)
 
     assert size(stack) == 3
+    assert is_empty(stack) == False
 
 
 def test_pop_positive():
@@ -29,9 +30,10 @@ def test_pop_positive():
     push(stack, 20)
 
     assert pop(stack) == 20
+    assert is_empty(stack) == False
 
 
-def test_push_and_pop():
+def test_push_and_pop1():
     stack = make_stack()
     push(stack, 1)
     push(stack, 2)
@@ -42,6 +44,26 @@ def test_push_and_pop():
     assert pop(stack) == 2
     assert is_empty(stack) == False
     assert size(stack) == 1
+
+
+def test_push_and_pop2():
+    stack = make_stack()
+    push(stack, 10)
+    push(stack, 20)
+
+    assert is_empty(stack) == False
+    assert size(stack) == 2
+    assert pop(stack) == 20
+
+    push(stack, 30)
+    push(stack, 40)
+    push(stack, 50)
+
+    assert is_empty(stack) == False
+    assert size(stack) == 4
+    assert pop(stack) == 50
+    assert size(stack) == 3
+
 
 
 def test_pop_from_empty_stack():
