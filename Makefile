@@ -10,7 +10,7 @@ test:
 	poetry run python -m pytest tests/
 
 lint:
-	poetry run flake8 data_structure exceptions
+	poetry run flake8 data_structure/
 
 check: selfcheck test lint
 
