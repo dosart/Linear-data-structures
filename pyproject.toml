@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "linear data structures"
-version = "0.2.1"
+version = "0.3.0"
 description = "implementation of classic linear data structures"
 authors = ["Denis <Dysprosium92@ya.ru>"]
 license = "MIT"
