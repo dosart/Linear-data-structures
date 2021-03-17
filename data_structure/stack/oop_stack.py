@@ -1,6 +1,7 @@
 """Stack implementation  using oop style."""
 
-from data_structure.exceptions.stack_exceptions import StackIsEmptyExeption
+from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.base_collection import BaseCollection, Position
 
 
 class Stack(object):
@@ -8,8 +9,7 @@ class Stack(object):
 
     def __init__(self):
         """List-based stack implementation."""
-        self._stack = []
-        self._size = 0
+        self._stack = BaseCollection()
 
     def __str__(self):
         """Return a string representation of the contents of a stack.
@@ -17,7 +17,7 @@ class Stack(object):
         Returns:
             str (string): contents of a stack
         """
-        return ','.join(map(str, self._stack))
+        return str(self._stack)
 
     def __len__(self):
         """Return size of stack.
@@ -25,7 +25,7 @@ class Stack(object):
         Returns:
             size (int): stack size
         """
-        return self._size
+        return self._stack.size
 
     @property
     def size(self):
@@ -34,7 +34,7 @@ class Stack(object):
         Returns:
             size (int): stack size
         """
-        return self._size
+        return self._stack.size
 
     @property
     def is_empty(self):
@@ -43,7 +43,7 @@ class Stack(object):
         Returns:
             size (bool): true if stack is empry, else false
         """
-        return self._size == 0
+        return self._stack.size == 0
 
     def push(self, element):
         """Add element in stack.
@@ -51,8 +51,7 @@ class Stack(object):
         Args:
             element:  element for added in stack
         """
-        self._stack.append(element)
-        self._size += 1
+        self._stack.insert(element, Position.last)
 
     def pop(self):
         """Extract item from stack.
@@ -61,9 +60,8 @@ class Stack(object):
             item: top item from stack
 
         Raises:
-            StackIsEmptyExeption: if stack is empty
+            CollectionIsEmptyExeption: if stack is empty
         """
         if self.is_empty:
-            raise StackIsEmptyExeption('Stack is empty')
-        self._size -= 1
-        return self._stack.pop()
+            raise CollectionIsEmptyExeption('Stack is empty')
+        return self._stack.extract()
