@@ -1,7 +1,6 @@
 """Stack implementation  using imperative style (only functions)."""
 
-
-from data_structure.exceptions.stack_exceptions import StackIsEmptyExeption
+from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
 
 
 def make_stack():
@@ -10,7 +9,7 @@ def make_stack():
     Returns:
         stack data structure
     """
-    return {_collection_key(): [], _size_key(): 0}
+    return _make_collection()
 
 
 def push(stack, element):
@@ -20,9 +19,7 @@ def push(stack, element):
         stack: stack data structure (created by function make_stack())
         element:  element for added in stack
     """
-    collection = _get_collection(stack)
-    collection.append(element)
-    _add_size(stack, 1)
+    _insert(stack, element)
 
 
 def pop(stack):
@@ -35,12 +32,11 @@ def pop(stack):
         item: top item from stack
 
     Raises:
-        StackIsEmptyExeption: if stack is empty
+        CollectionIsEmptyExeption: if stack is empty
     """
     if is_empty(stack):
-        raise StackIsEmptyExeption('Stack is Empty')
-    _add_size(stack, -1)
-    return stack[_collection_key()].pop()
+        raise CollectionIsEmptyExeption('Stack is Empty')
+    return _extract(stack)
 
 
 def is_empty(stack):
@@ -52,8 +48,7 @@ def is_empty(stack):
     Returns:
         size (bool): true if stack is empry, else false
     """
-    size = _get_size(stack)
-    return (size == 0)
+    return _size(stack) == 0
 
 
 def size(stack):
@@ -65,24 +60,20 @@ def size(stack):
     Returns:
         size (int): stack size
     """
-    return _get_size(stack)
+    return _size(stack)
 
 
-def _get_collection(stack):
-    return stack[_collection_key()]
+def _make_collection():
+    return []
 
 
-def _get_size(stack):
-    return stack[_size_key()]
+def _insert(collection, element):
+    collection.append(element)
 
 
-def _add_size(stack, added_value):
-    stack[_size_key()] += added_value
+def _extract(collection):
+    return collection.pop()
 
 
-def _size_key():
-    return 'size'
-
-
-def _collection_key():
-    return 'collection'
+def _size(collection):
+    return len(collection)
