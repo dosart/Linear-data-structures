@@ -1,20 +1,22 @@
-"""Tests of oop stack."""
+"""Tests of stack."""
 
 import pytest
 
-from data_structure.queue.oop_queue import Queue
+from data_structure.queue.oop_queue import Queue as ArrayQueue
+from data_structure.queue.two_stacks_queue import Queue as StackQueue
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
 
 
-def test_make_queue():
+@pytest.mark.parametrize("Queue", [ArrayQueue, StackQueue])
+def test_make_queue(Queue):
     queue = Queue()
-
     assert queue.size == 0
     assert queue.is_empty == True
     assert len(queue) == 0
 
 
-def test_enqueue():
+@pytest.mark.parametrize("Queue", [ArrayQueue, StackQueue])
+def test_enqueue(Queue):
     queue = Queue()
 
     for i in range(3):
@@ -25,7 +27,8 @@ def test_enqueue():
     assert len(queue) == 3
 
 
-def test_dequeue_positive1():
+@pytest.mark.parametrize("Queue", [ArrayQueue, StackQueue])
+def test_dequeue_positive1(Queue):
     queue = Queue()
 
     for i in range(11, 15):
@@ -37,7 +40,8 @@ def test_dequeue_positive1():
     assert len(queue) == 3
 
 
-def test_dequeue_positive2():
+@pytest.mark.parametrize("Queue", [ArrayQueue, StackQueue])
+def test_dequeue_positive2(Queue):
     queue = Queue()
 
     for i in range(21, 25):
@@ -57,7 +61,22 @@ def test_dequeue_positive2():
     assert queue.dequeue() == 24
 
 
-def test_dequeue_from_empty_queue():
+@pytest.mark.parametrize("Queue", [ArrayQueue, StackQueue])
+def test_dequeue_positive3(Queue):
+    queue = Queue()
+
+    queue.enqueue(1)
+    queue.enqueue(2)
+
+    assert queue.dequeue() == 1
+    queue.enqueue(3)
+
+    assert queue.dequeue() == 2
+    assert queue.dequeue() == 3
+
+
+@pytest.mark.parametrize("Queue", [ArrayQueue, StackQueue])
+def test_dequeue_from_empty_queue(Queue):
     queue = Queue()
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
