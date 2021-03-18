@@ -5,10 +5,10 @@ from data_structure.exceptions.collection_exeption import CollectionIsEmptyExept
 
 
 class Queue(object):
-    """Class implements the data structure queue."""
+    """List-based queue implementation."""
 
     def __init__(self):
-        """List-based queue implementation."""
+        """Class implements the data structure queue."""
         self._queue = BaseCollection()
 
     def __str__(self):
