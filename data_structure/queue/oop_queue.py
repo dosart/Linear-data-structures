@@ -1,4 +1,4 @@
-"""Queue implementation  using oop style."""
+"""Queue implementation using oop style."""
 
 from data_structure.base_collection import BaseCollection, Position
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
@@ -29,7 +29,7 @@ class Queue(object):
 
     @property
     def size(self):
-        """Return size of stack.
+        """Return size of queue.
 
         Returns:
             size (int): queue size
