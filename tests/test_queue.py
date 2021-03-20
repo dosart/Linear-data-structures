@@ -1,4 +1,4 @@
-"""Tests of stack."""
+"""Tests of queue."""
 
 import pytest
 
