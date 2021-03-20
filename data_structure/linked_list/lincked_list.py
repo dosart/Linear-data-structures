@@ -8,10 +8,9 @@ class LinkedList(object):
 
     def __init__(self):
         """Class implements the data structure lincked list."""
-        self._tail = None
-        self._head = self._tail
+        self._head = None
         self._size = 0
-    
+
     def __len__(self):
         """Return size of list.
 
@@ -19,7 +18,7 @@ class LinkedList(object):
             size (int): list size
         """
         return self._size
-    
+
     @property
     def is_empty(self):
         """Return True if list is empty.
@@ -27,8 +26,8 @@ class LinkedList(object):
         Returns:
             size (bool): true if list is empry, else false
         """
-        self._head == None
-    
+        return self._size == 0
+
     @property
     def size(self):
         """Return size of list.
@@ -48,11 +47,11 @@ class LinkedList(object):
         Raises:
             CollectionIsEmptyExeption: if list is empty
         """
-        if self.is_empty():
-            raise CollectionIsEmptyExeption('List is empty')
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(self._error_message())
         return self._head.data
-    
-    @property.setter
+
+    @front.setter
     def front(self, element):
         """Add element in list front.
 
@@ -73,9 +72,6 @@ class LinkedList(object):
 
         self._size += 1
 
-        if self.is_empty():
-            self._tail = node
-
     @property
     def back(self):
         """Return (not extract) last item from list.
@@ -86,11 +82,41 @@ class LinkedList(object):
         Raises:
             CollectionIsEmptyExeption: if list is empty
         """
-        if self.is_empty():
-            raise CollectionIsEmptyExeption('List is empty')
-        return self._tail.data
+        return self.value_at(self._size - 1)
 
-    @property.setter
+    def value_at(self, index):
+        """Return (not extract) item by index.
+
+        Returns:
+            item: item from list by index
+
+        Args:
+            index (int): index return item
+
+        Raises:
+            CollectionIsEmptyExeption: if list is empty
+            IndexError: if index is not valid
+        """
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(self._error_message())
+        if not self.index_valid(index):
+            raise IndexError('List index out of range')
+
+        finded = self._find_by(index)
+        return finded.data
+
+    def index_valid(self, index):
+        """Check index.
+
+        Args:
+            index (int): index for check
+
+        Returns:
+            value(bool): True if index <= 0 or index >= self._size
+        """
+        return (False if index < 0 or index >= self._size else True)
+
+    @back.setter
     def back(self, element):
         """Add element in list back.
 
@@ -105,16 +131,19 @@ class LinkedList(object):
         Args:
             element:  element for added in list
         """
-        if self.is_empty():
+        if self.is_empty:
             self.push_front(element)
-        else: 
+        else:
             node = Node(element)
-            node.next = self._tail.next
-            self._tail = node
+
+            current = self._head
+            while current.next:
+                current = current.next
+            current.next = node
 
             self._size += 1
 
-    def __in__(self, element):
+    def __contains__(self, element):
         """Check contain element in list.
 
         Args:
@@ -140,53 +169,94 @@ class LinkedList(object):
                 return True
             current_ptr = current_ptr.next
         return False
-    
-    def value_at(self, index):
-        """Return (not extract) item by index.
 
-        Returns:
-            item: item from list by index
+    def erase(self, index):
+        """Remove element by index from list.
+
+        Args:
+            index (int): index of element for delete
 
         Raises:
             CollectionIsEmptyExeption: if list is empty
-            IndexError: if index is not valid
         """
-        if self.is_empty():
-            raise CollectionIsEmptyExeption('List is empty')
-        if not self.index_valid(index):
-            raise IndexError('List index out of range')
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(self._error_message)
+        if index == 0:
+            self.pop_front()
+            return
+        if index == self._size - 1:
+            self.pop_back()
+            return
+        previous = self._find_by(index - 1)
+        deleted = previous.next
+        previous.next = deleted.next
+        deleted.next = None
 
-        current_ptr = self._head
-        curent_id = 0
-        while curent_id <= index:
-            current_ptr = current_ptr.next
-            curent_id += 1
+        self._size -= 1
 
-        return current_ptr.data
-    
-    def index_valid(self, index):
-        """Check index.
-
-        Args:
-            index (int): index for check
+    def pop_front(self):
+        """Return (and extract) first item from list.
 
         Returns:
-            value(bool): True if index <= 0 or index >= self._size
+            first_element_data: first item from list
+
+        Raises:
+            CollectionIsEmptyExeption: if list is empty
         """
-        return (True if index <= 0 or index >= self._size else False)
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(self._error_message())
+
+        return_value = self._head.data
+
+        self._head = self._head.next
+        self._size -= 1
+
+        return return_value
+
+    def pop_back(self):
+        """Return (and extract) last item from list.
+
+        Returns:
+            last_item: last item from list
+
+        Raises:
+            CollectionIsEmptyExeption: if list is empty
+        """
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(self._error_message())
+
+        penultimate = self._find_by(self._size - 2)
+        last = penultimate.next
+        penultimate.next = None
+        self._size -= 1
+
+        return last.data
+
+    def _find_by(self, index):
+        current_id = 0
+        current_ptr = self._head
+
+        while current_id < index:
+            current_id += 1
+            current_ptr = current_ptr.next
+
+        return current_ptr
+
+    def _error_message(self):
+        return 'List is empty'
 
 
 class Node(object):
     """Class implements node for linked list."""
 
-    def __init__(self, data):
+    def __init__(self, init_data):
         """Class implements node for linked list.
 
         Args:
-            data: data of node
+            init_data: data of node
         """
-        self._data = data
-        self._next = None
+        self.data = init_data
+        self.next = None
 
     def __str__(self):
         """Return a string representation of node.
@@ -194,40 +264,4 @@ class Node(object):
         Returns:
             str (string): data of node
         """
-        return str(self._data)
-
-    @property
-    def data(self):
-        """Return data of node.
-
-        Returns:
-            data: data of node
-        """
-        return self._data
-
-    @property.setter
-    def data(self, data):
-        """Set data of node.
-
-        Args:
-            data: data of node
-        """
-        self._data = data
-
-    @property
-    def next(self):
-        """Return link to next node.
-        
-        Returns:
-            next: link to next node
-        """
-        return self._next
-    
-    @property.setter
-    def next(self, next):
-        """Set link to next node.
-
-        Args:
-           next: link to next node
-        """
-        self._next = next
+        return str(self.data)
