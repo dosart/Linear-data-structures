@@ -10,3 +10,5 @@ Implementation of classic linear data structures:
 * queue:
   * [oop style](https://github.com/dosart/Linear-data-structures/blob/main/data_structure/queue/oop_queue.py)
   * [using two stacks](https://github.com/dosart/Linear-data-structures/blob/main/data_structure/queue/two_stacks_queue.py)
+* linked list
+  *  [oop style](https://github.com/dosart/Linear-data-structures/blob/main/data_structure/linked_list/lincked_list.py)
