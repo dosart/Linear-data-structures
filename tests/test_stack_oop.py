@@ -4,6 +4,7 @@ import pytest
 
 from data_structure.stack.oop_stack import Stack
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import stack_is_empty
 
 
 def test_make_stack():
@@ -64,7 +65,7 @@ def test_push_and_pop2():
 
     for i in range(10):
         stack.push(i)
-    
+
     assert stack.pop() == 9
     assert stack.pop() == 8
 
@@ -81,7 +82,7 @@ def test_pop_from_empty_stack():
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = stack.pop()
 
-    assert str(exception_info.value) == 'Stack is empty'
+    assert str(exception_info.value) == stack_is_empty()
 
 
 def test_to_empty_string():

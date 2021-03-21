@@ -4,6 +4,7 @@ import pytest
 
 from data_structure.linked_list.lincked_list import LinkedList
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import list_is_empty, index_out_of_range
 
 
 def test_make_list():
@@ -38,7 +39,7 @@ def test_front_from_empty_list():
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = list.front
-    assert str(exception_info.value) == 'List is empty'
+    assert str(exception_info.value) == list_is_empty()
 
 
 def test_push_back_in_empty_list():
@@ -65,7 +66,7 @@ def test_back_from_empty():
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = list.back
-    assert str(exception_info.value) == 'List is empty'
+    assert str(exception_info.value) == list_is_empty()
 
 
 def test_back_and_push():
@@ -235,7 +236,7 @@ def test_value_at_index_negative(value_at_fixture):
 
     with pytest.raises(IndexError) as exception_info:
         value = list.value_at(-1)
-    assert str(exception_info.value) == 'List index out of range'
+    assert str(exception_info.value) == index_out_of_range()
 
 
 def test_value_at_index_bigger(value_at_fixture):
@@ -243,7 +244,7 @@ def test_value_at_index_bigger(value_at_fixture):
 
     with pytest.raises(IndexError) as exception_info:
         value = list.value_at(list.size)
-    assert str(exception_info.value) == 'List index out of range'
+    assert str(exception_info.value) == index_out_of_range()
 
 
 def test_value_at_empty_list():
@@ -251,7 +252,7 @@ def test_value_at_empty_list():
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = list.value_at(list.size)
-    assert str(exception_info.value) == 'List is empty'
+    assert str(exception_info.value) == list_is_empty()
 
 
 def test_pop_front_positive(value_at_fixture):
@@ -270,7 +271,7 @@ def test_pop_front_negative(value_at_fixture):
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = list.pop_front()
-    assert str(exception_info.value) == 'List is empty'
+    assert str(exception_info.value) == list_is_empty()
 
 
 def test_pop_back_positive(value_at_fixture):
@@ -289,7 +290,7 @@ def test_pop_front_negative(value_at_fixture):
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = list.pop_back()
-    assert str(exception_info.value) == 'List is empty'
+    assert str(exception_info.value) == list_is_empty()
 
 
 def test_erase_first_element(value_at_fixture):

@@ -4,6 +4,7 @@ import pytest
 
 from data_structure.stack.imperative_stack import make_stack, push, pop, is_empty, size
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import stack_is_empty
 
 
 def test_make_stack():
@@ -64,11 +65,10 @@ def test_push_and_pop2():
     assert size(stack) == 3
 
 
-
 def test_pop_from_empty_stack():
     stack = make_stack()
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = pop(stack)
-    
-    assert str(exception_info.value) == 'Stack is Empty'
+
+    assert str(exception_info.value) == stack_is_empty()

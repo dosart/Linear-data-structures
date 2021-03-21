@@ -2,6 +2,7 @@
 
 from data_structure.stack.oop_stack import Stack
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import queue_is_empty
 
 
 class Queue(object):
@@ -67,5 +68,5 @@ class Queue(object):
             while not self._put_stack.is_empty:
                 self._extract_stack.push(self._put_stack.pop())
         if self._extract_stack.is_empty:
-            raise CollectionIsEmptyExeption('Queue is empty')
+            raise CollectionIsEmptyExeption(queue_is_empty())
         return self._extract_stack.pop()

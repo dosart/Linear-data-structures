@@ -1,6 +1,7 @@
 """Stack implementation  using imperative style (only functions)."""
 
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import stack_is_empty
 
 
 def make_stack():
@@ -35,7 +36,7 @@ def pop(stack):
         CollectionIsEmptyExeption: if stack is empty
     """
     if is_empty(stack):
-        raise CollectionIsEmptyExeption('Stack is Empty')
+        raise CollectionIsEmptyExeption(stack_is_empty())
     return _extract(stack)
 
 

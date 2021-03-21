@@ -2,6 +2,7 @@
 
 from data_structure.base_collection import BaseCollection, Position
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import queue_is_empty
 
 
 class Queue(object):
@@ -63,5 +64,5 @@ class Queue(object):
             CollectionIsEmptyExeption: if queue is empty
         """
         if self._queue.is_empty:
-            raise CollectionIsEmptyExeption('Queue is empty')
+            raise CollectionIsEmptyExeption(queue_is_empty())
         return self._queue.extract()

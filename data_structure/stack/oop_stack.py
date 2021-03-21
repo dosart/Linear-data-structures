@@ -2,6 +2,7 @@
 
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
 from data_structure.base_collection import BaseCollection, Position
+from data_structure.exceptions.error_messages import stack_is_empty
 
 
 class Stack(object):
@@ -63,5 +64,5 @@ class Stack(object):
             CollectionIsEmptyExeption: if stack is empty
         """
         if self.is_empty:
-            raise CollectionIsEmptyExeption('Stack is empty')
+            raise CollectionIsEmptyExeption(stack_is_empty())
         return self._stack.extract()

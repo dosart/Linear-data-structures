@@ -1,6 +1,7 @@
 """Lincked list implementation using oop style."""
 
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import list_is_empty, index_out_of_range
 
 
 class LinkedList(object):
@@ -48,7 +49,7 @@ class LinkedList(object):
             CollectionIsEmptyExeption: if list is empty
         """
         if self.is_empty:
-            raise CollectionIsEmptyExeption(self._error_message())
+            raise CollectionIsEmptyExeption(list_is_empty())
         return self._head.data
 
     @front.setter
@@ -98,9 +99,9 @@ class LinkedList(object):
             IndexError: if index is not valid
         """
         if self.is_empty:
-            raise CollectionIsEmptyExeption(self._error_message())
+            raise CollectionIsEmptyExeption(list_is_empty())
         if not self.index_valid(index):
-            raise IndexError('List index out of range')
+            raise IndexError(index_out_of_range())
 
         finded = self._find_by(index)
         return finded.data
@@ -204,7 +205,7 @@ class LinkedList(object):
             CollectionIsEmptyExeption: if list is empty
         """
         if self.is_empty:
-            raise CollectionIsEmptyExeption(self._error_message())
+            raise CollectionIsEmptyExeption(list_is_empty())
 
         return_value = self._head.data
 
@@ -223,7 +224,7 @@ class LinkedList(object):
             CollectionIsEmptyExeption: if list is empty
         """
         if self.is_empty:
-            raise CollectionIsEmptyExeption(self._error_message())
+            raise CollectionIsEmptyExeption(list_is_empty())
 
         penultimate = self._find_by(self._size - 2)
         last = penultimate.next
@@ -241,9 +242,6 @@ class LinkedList(object):
             current_ptr = current_ptr.next
 
         return current_ptr
-
-    def _error_message(self):
-        return 'List is empty'
 
 
 class Node(object):

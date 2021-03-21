@@ -5,6 +5,7 @@ import pytest
 from data_structure.queue.oop_queue import Queue as ArrayQueue
 from data_structure.queue.two_stacks_queue import Queue as StackQueue
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.error_messages import queue_is_empty
 
 
 @pytest.mark.parametrize("Queue", [ArrayQueue, StackQueue])
@@ -82,4 +83,4 @@ def test_dequeue_from_empty_queue(Queue):
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
         value = queue.dequeue()
 
-    assert str(exception_info.value) == 'Queue is empty'
+    assert str(exception_info.value) == queue_is_empty()
