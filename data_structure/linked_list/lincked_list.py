@@ -233,6 +233,38 @@ class LinkedList(object):
 
         return last.data
 
+    def remove_value(self, value):
+        """Remove element by value from list.
+
+        Args:
+            value (int): value of element for delete
+
+        Returns:
+            result (bool): if value removed return True, else False
+        """
+        current = self._head
+        previously = Node
+        founded = False
+
+        while current is not None and founded is not True:
+            if current.data == value:
+                founded = True
+            else:
+                previously = current
+                current = current.next
+
+        if current is None:
+            return False
+
+        if current is self._head:
+            self._head = self._head.next
+        else:
+            previously.next = current.next
+            current.next = None
+
+        self._size -= 1
+        return True
+
     def _find_by(self, index):
         current_id = 0
         current_ptr = self._head

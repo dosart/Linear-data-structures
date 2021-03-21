@@ -328,3 +328,44 @@ def test_erase_middle_element(value_at_fixture):
 
     assert list.value_at(5) == sixth
     assert list.size == size - 1
+
+
+def test_remove_firts_value(value_at_fixture):
+    list = value_at_fixture
+    size = list.size
+
+    assert list.front == 0
+    assert list.remove_value(0) is True
+    assert list.size == size - 1
+    assert list.front == 1
+
+
+def test_remove_last_value(value_at_fixture):
+    list = value_at_fixture
+    size = list.size
+
+    assert list.back == 9
+    assert list.remove_value(9) is True
+    assert list.size == size - 1
+    assert list.back == 8
+
+
+def test_remove_middle_value(value_at_fixture):
+    list = value_at_fixture
+    size = list.size
+
+    assert list.remove_value(5) is True
+    assert list.size == size - 1
+
+
+def test_remove_negative(value_at_fixture):
+    list = value_at_fixture
+    size = list.size
+
+    assert list.remove_value(100) is False
+    assert list.size == size
+
+
+def test_remove_from_empty_list():
+    list = LinkedList()
+    assert list.remove_value(100) is False
