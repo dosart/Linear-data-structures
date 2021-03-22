@@ -234,7 +234,7 @@ class LinkedList(object):
 
         self._size -= 1
         return True
-    
+
     def value_at(self, index):
         """Return (not extract) item by index.
 
@@ -257,7 +257,6 @@ class LinkedList(object):
         return finded.data
 
     def insert(self, index, value):
-        value_at(self, index):
         """Insert item by index.
 
         Args:
@@ -274,13 +273,14 @@ class LinkedList(object):
             raise IndexError(index_out_of_range())
         if index == 0:
             self.push_front(value)
-        if index == self._size - 1:
-            self.push_back(value)
+            return
         else:
             node = Node(value)
             previously = self._find_by(index - 1)
             node.next = previously.next
             previously.next = node
+
+            self._size += 1
 
     def index_valid(self, index):
         """Check index.
@@ -292,8 +292,6 @@ class LinkedList(object):
             value(bool): True if index <= 0 or index >= self._size
         """
         return (False if index < 0 or index >= self._size else True)
-        
-
 
     def _find_by(self, index):
         current_id = 0
