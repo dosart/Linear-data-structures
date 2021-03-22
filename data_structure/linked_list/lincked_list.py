@@ -257,7 +257,6 @@ class LinkedList(object):
         return finded.data
 
     def insert(self, index, value):
-        value_at(self, index):
         """Insert item by index.
 
         Args:
