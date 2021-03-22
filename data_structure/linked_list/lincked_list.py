@@ -85,38 +85,6 @@ class LinkedList(object):
         """
         return self.value_at(self._size - 1)
 
-    def value_at(self, index):
-        """Return (not extract) item by index.
-
-        Returns:
-            item: item from list by index
-
-        Args:
-            index (int): index return item
-
-        Raises:
-            CollectionIsEmptyExeption: if list is empty
-            IndexError: if index is not valid
-        """
-        if self.is_empty:
-            raise CollectionIsEmptyExeption(list_is_empty())
-        if not self.index_valid(index):
-            raise IndexError(index_out_of_range())
-
-        finded = self._find_by(index)
-        return finded.data
-
-    def index_valid(self, index):
-        """Check index.
-
-        Args:
-            index (int): index for check
-
-        Returns:
-            value(bool): True if index <= 0 or index >= self._size
-        """
-        return (False if index < 0 or index >= self._size else True)
-
     @back.setter
     def back(self, element):
         """Add element in list back.
@@ -257,13 +225,75 @@ class LinkedList(object):
             return False
 
         if current is self._head:
+            node = self._head
             self._head = self._head.next
+            node.next = None
         else:
             previously.next = current.next
             current.next = None
 
         self._size -= 1
         return True
+    
+    def value_at(self, index):
+        """Return (not extract) item by index.
+
+        Returns:
+            item: item from list by index
+
+        Args:
+            index (int): index return item
+
+        Raises:
+            CollectionIsEmptyExeption: if list is empty
+            IndexError: if index is not valid
+        """
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(list_is_empty())
+        if not self.index_valid(index):
+            raise IndexError(index_out_of_range())
+
+        finded = self._find_by(index)
+        return finded.data
+
+    def insert(self, index, value):
+        value_at(self, index):
+        """Insert item by index.
+
+        Args:
+            index (int): index for insert
+            value : value for insert
+
+        Raises:
+            CollectionIsEmptyExeption: if list is empty
+            IndexError: if index is not valid
+        """
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(list_is_empty())
+        if not self.index_valid(index):
+            raise IndexError(index_out_of_range())
+        if index == 0:
+            self.push_front(value)
+        if index == self._size - 1:
+            self.push_back(value)
+        else:
+            node = Node(value)
+            previously = self._find_by(index - 1)
+            node.next = previously.next
+            previously.next = node
+
+    def index_valid(self, index):
+        """Check index.
+
+        Args:
+            index (int): index for check
+
+        Returns:
+            value(bool): True if index <= 0 or index >= self._size
+        """
+        return (False if index < 0 or index >= self._size else True)
+        
+
 
     def _find_by(self, index):
         current_id = 0
