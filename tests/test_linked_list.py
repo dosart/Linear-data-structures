@@ -2,7 +2,7 @@
 
 import pytest
 
-from data_structure.linked_list.lincked_list import LinkedList
+from data_structure.linked_list.linked_list import LinkedList
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
 from data_structure.exceptions.error_messages import list_is_empty, index_out_of_range
 
@@ -414,3 +414,9 @@ def test_insert_5_value(value_at_fixture):
     assert list.value_at(5) == 100
     assert list.value_at(6) == 5
     assert list.size == size + 1
+
+
+def test_iterator(value_at_fixture):
+    list = value_at_fixture
+    for element in list:
+        pass
