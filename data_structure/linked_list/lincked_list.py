@@ -2,6 +2,8 @@
 
 from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
 from data_structure.exceptions.error_messages import list_is_empty, index_out_of_range
+from data_structure.linked_list.node import Node
+from data_structure.linked_list.iterator import LinkedListIterator
 
 
 class LinkedList(object):
@@ -19,6 +21,14 @@ class LinkedList(object):
             size (int): list size
         """
         return self._size
+
+    def __iter__(self):
+        """Return iterator of list.
+
+        Returns:
+            iterator (LinkedListIterator): iterator of list
+        """
+        return LinkedListIterator(self._head)
 
     @property
     def is_empty(self):
@@ -302,24 +312,3 @@ class LinkedList(object):
             current_ptr = current_ptr.next
 
         return current_ptr
-
-
-class Node(object):
-    """Class implements node for linked list."""
-
-    def __init__(self, init_data):
-        """Class implements node for linked list.
-
-        Args:
-            init_data: data of node
-        """
-        self.data = init_data
-        self.next = None
-
-    def __str__(self):
-        """Return a string representation of node.
-
-        Returns:
-            str (string): data of node
-        """
-        return str(self.data)

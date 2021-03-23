@@ -4,14 +4,13 @@
 class LinkedListIterator(object):
     """Class implements iterator for linked list."""
 
-    def __init__(self, linked_list):
+    def __init__(self, head):
          """Class implements iterator for linked list.
          
          Args:
             linked_list(LinkedList): linked list
          """
-         self._list = linked_list
-         self._current_ptr = linked_list._head
+         self._current_ptr = head
     
     def __iter__(self):
         """Return self.
@@ -31,7 +30,7 @@ class LinkedListIterator(object):
             StopIteration: if passed all elements
         """
         if self._current_ptr is not None:
-            data = self._current_ptr._head
+            data = self._current_ptr.data
             self._current_ptr = self._current_ptr.next
             return data
         else:
