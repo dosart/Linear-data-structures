@@ -217,6 +217,7 @@ def test_value_at_zero(value_at_fixture):
     list = value_at_fixture
 
     assert list.value_at(0) == 0
+    assert list.value_at(1) == 1
 
 
 def test_value_at_middle(value_at_fixture):
@@ -369,3 +370,47 @@ def test_remove_negative(value_at_fixture):
 def test_remove_from_empty_list():
     list = LinkedList()
     assert list.remove_value(100) is False
+
+
+def test_insert_0_value(value_at_fixture):
+    list = value_at_fixture
+    size = list.size
+
+    assert list.front == 0
+
+    list.insert(0, 100)
+
+    assert list.front == 100
+    assert list.value_at(0) == 100
+    assert list.value_at(1) == 0
+    assert list.size == size + 1
+
+
+def test_insert_last_value(value_at_fixture):
+    list = value_at_fixture
+    size = list.size
+
+    assert list.back == 9
+    assert list.value_at(8) == 8
+
+    list.insert(9, 100)
+
+    assert list.size == size + 1
+    assert list.back == 9
+    assert list.value_at(10) == 9
+    assert list.value_at(9) == 100
+    assert list.value_at(8) == 8
+
+
+def test_insert_5_value(value_at_fixture):
+    list = value_at_fixture
+    size = list.size
+
+    assert list.value_at(5) == 5
+    assert list.value_at(6) == 6
+
+    list.insert(5, 100)
+
+    assert list.value_at(5) == 100
+    assert list.value_at(6) == 5
+    assert list.size == size + 1
