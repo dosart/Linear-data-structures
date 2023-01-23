@@ -24,7 +24,7 @@ class BaseCollection(object):
         Returns:
             str (string): contents of a collection
         """
-        return ','.join(map(str, self._collection))
+        return ",".join(map(str, self._collection))
 
     def __len__(self):
         """Return size of collection.
@@ -48,14 +48,14 @@ class BaseCollection(object):
         """Return True if stack is empty.
 
         Returns:
-            size (bool): true if stack is empry, else false
+            size (bool): true if stack is empty, else false
         """
         return self._size == 0
 
     def insert(self, element, position=Position.last):
         """Insert element in collection.
 
-        By default inserts at the end
+        By default, inserts at the end
 
         Args:
             element: element for added in collection
@@ -76,13 +76,23 @@ class BaseCollection(object):
             position (Position): last append to the end, first append to begin
 
         Returns:
-            element: elemtnt of collection
+            element: element of collection
         """
-        element = None
         if position == Position.last:
-            element = self._collection.pop()
-        else:
-            element = self._collection.pop(0)
+            self._size -= 1
+            return self._collection.pop()
         self._size -= 1
+        return self._collection.pop(0)
 
-        return element
+    def peek(self, position=Position.last):
+        """Return the element at the top of the stack.
+
+        Args:
+            position (Position): last append to the end, first append to begin
+
+        Returns:
+            value: element at the top of the stack
+        """
+        if position == Position.last:
+            return self._collection[self._size - 1]
+        return self._collection.pop(0)

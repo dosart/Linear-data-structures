@@ -10,7 +10,7 @@ from data_structure.exceptions.error_messages import stack_is_empty
 def test_make_stack():
     stack = Stack()
 
-    assert stack.is_empty == True
+    assert stack.is_empty is True
     assert stack.size == 0
     assert len(stack) == 0
 
@@ -23,7 +23,7 @@ def test_push_positive():
     stack.push(30)
 
     assert stack.size == 3
-    assert stack.is_empty == False
+    assert stack.is_empty is False
 
 
 def test_pop_positive():
@@ -35,10 +35,10 @@ def test_pop_positive():
     stack.push(45)
 
     assert stack.size == 4
-    assert stack.is_empty == False
+    assert stack.is_empty is False
     assert stack.pop() == 45
     assert stack.size == 3
-    assert stack.is_empty == False
+    assert stack.is_empty is False
 
 
 def test_push_and_pop():
@@ -50,10 +50,10 @@ def test_push_and_pop():
     stack.push(55)
 
     assert stack.size == 4
-    assert stack.is_empty == False
+    assert stack.is_empty is False
     assert stack.pop() == 55
     assert stack.size == 3
-    assert stack.is_empty == False
+    assert stack.is_empty is False
 
     assert stack.pop() == 45
     assert stack.pop() == 35
@@ -88,7 +88,7 @@ def test_pop_from_empty_stack():
 def test_to_empty_string():
     stack = Stack()
 
-    assert '' == str(stack)
+    assert "" == str(stack)
 
 
 def test_to_string():
@@ -98,7 +98,7 @@ def test_to_string():
     stack.push(2)
     stack.push(3)
 
-    assert '1,2,3' == str(stack)
+    assert "1,2,3" == str(stack)
 
 
 def test_len_function():

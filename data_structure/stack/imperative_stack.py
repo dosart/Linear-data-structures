@@ -1,6 +1,8 @@
 """Stack implementation  using imperative style (only functions)."""
 
-from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.collection_exeption import (
+    CollectionIsEmptyExeption,
+)
 from data_structure.exceptions.error_messages import stack_is_empty
 
 

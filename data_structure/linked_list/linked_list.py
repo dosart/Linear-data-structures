@@ -1,9 +1,14 @@
 """Lincked list implementation using oop style."""
 
-from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
-from data_structure.exceptions.error_messages import list_is_empty, index_out_of_range
-from data_structure.linked_list.node import Node
+from data_structure.exceptions.collection_exeption import (
+    CollectionIsEmptyExeption,
+)
+from data_structure.exceptions.error_messages import (
+    index_out_of_range,
+    list_is_empty,
+)
 from data_structure.linked_list.iterator import LinkedListIterator
+from data_structure.linked_list.node import Node
 
 
 class LinkedList(object):
@@ -35,7 +40,7 @@ class LinkedList(object):
         """Return True if list is empty.
 
         Returns:
-            size (bool): true if list is empry, else false
+            size (bool): true if list is empty, else false
         """
         return self._size == 0
 
@@ -89,9 +94,6 @@ class LinkedList(object):
 
         Returns:
             item: last item from list
-
-        Raises:
-            CollectionIsEmptyExeption: if list is empty
         """
         return self.value_at(self._size - 1)
 
@@ -301,7 +303,7 @@ class LinkedList(object):
         Returns:
             value(bool): True if index <= 0 or index >= self._size
         """
-        return (False if index < 0 or index >= self._size else True)
+        return index < 0 or index >= self._size
 
     def _find_by(self, index):
         current_id = 0

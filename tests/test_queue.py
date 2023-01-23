@@ -12,7 +12,7 @@ from data_structure.exceptions.error_messages import queue_is_empty
 def test_make_queue(Queue):
     queue = Queue()
     assert queue.size == 0
-    assert queue.is_empty == True
+    assert queue.is_empty is True
     assert len(queue) == 0
 
 
@@ -24,7 +24,7 @@ def test_enqueue(Queue):
         queue.enqueue(i)
 
     assert queue.size == 3
-    assert queue.is_empty == False
+    assert queue.is_empty is False
     assert len(queue) == 3
 
 
@@ -37,7 +37,7 @@ def test_dequeue_positive1(Queue):
 
     assert queue.dequeue() == 11
     assert queue.size == 3
-    assert queue.is_empty == False
+    assert queue.is_empty is False
     assert len(queue) == 3
 
 
@@ -50,12 +50,12 @@ def test_dequeue_positive2(Queue):
 
     assert queue.dequeue() == 21
     assert queue.size == 3
-    assert queue.is_empty == False
+    assert queue.is_empty is False
     assert len(queue) == 3
 
     assert queue.dequeue() == 22
     assert queue.size == 2
-    assert queue.is_empty == False
+    assert queue.is_empty is False
     assert len(queue) == 2
 
     assert queue.dequeue() == 23
@@ -81,6 +81,6 @@ def test_dequeue_from_empty_queue(Queue):
     queue = Queue()
 
     with pytest.raises(CollectionIsEmptyExeption) as exception_info:
-        value = queue.dequeue()
+        queue.dequeue()
 
     assert str(exception_info.value) == queue_is_empty()

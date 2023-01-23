@@ -1,8 +1,10 @@
 """Queue implementation  using two stacks."""
 
-from data_structure.stack.oop_stack import Stack
-from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
+from data_structure.exceptions.collection_exeption import (
+    CollectionIsEmptyExeption,
+)
 from data_structure.exceptions.error_messages import queue_is_empty
+from data_structure.stack.oop_stack import Stack
 
 
 class Queue(object):

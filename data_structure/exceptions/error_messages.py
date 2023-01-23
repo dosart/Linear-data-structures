@@ -7,7 +7,7 @@ def list_is_empty():
     Returns:
         message (str): error message
     """
-    return 'List is empty'
+    return "List is empty"
 
 
 def queue_is_empty():
@@ -16,7 +16,7 @@ def queue_is_empty():
     Returns:
         message (str): error message
     """
-    return 'Queue is empty'
+    return "Queue is empty"
 
 
 def stack_is_empty():
@@ -25,7 +25,7 @@ def stack_is_empty():
     Returns:
         message (str): error message
     """
-    return 'Stack is empty'
+    return "Stack is empty"
 
 
 def index_out_of_range():
@@ -34,4 +34,4 @@ def index_out_of_range():
     Returns:
         message (str): error message
     """
-    return 'Index out of range'
+    return "Index out of range"

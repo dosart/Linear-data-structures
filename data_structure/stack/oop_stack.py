@@ -1,7 +1,9 @@
 """Stack implementation  using oop style."""
 
-from data_structure.exceptions.collection_exeption import CollectionIsEmptyExeption
 from data_structure.base_collection import BaseCollection, Position
+from data_structure.exceptions.collection_exeption import (
+    CollectionIsEmptyExeption,
+)
 from data_structure.exceptions.error_messages import stack_is_empty
 
 
@@ -66,3 +68,16 @@ class Stack(object):
         if self.is_empty:
             raise CollectionIsEmptyExeption(stack_is_empty())
         return self._stack.extract()
+
+    def peek(self):
+        """Return the element at the top of the stack.
+
+        Returns:
+            value: element at the top of the stack
+
+        Raises:
+            CollectionIsEmptyExeption: if stack is empty
+        """
+        if self.is_empty:
+            raise CollectionIsEmptyExeption(stack_is_empty())
+        return self._stack.peek()

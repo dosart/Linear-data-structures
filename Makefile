@@ -1,18 +1,34 @@
-.PHONY: install selfcheck test lint check build
+install: ## Install dependencies
+	@poetry install
 
-install:
-	 poetry install
+format: ## Install dependencies
+	poetry run black .
 
-selfcheck:
-	poetry check
+test:  ## Run tests
+	@poetry run pytest
 
-test:
-	poetry run python -m pytest tests/
+lint: ## Run linter
+	@poetry run flake8 data_structure
 
-lint:
-	poetry run flake8 data_structure
+selfcheck: ## Checks the validity of the pyproject.toml file
+	@poetry check
 
-check: selfcheck test lint
+check: ## selfcheck + test + lint
+	@make selfcheck
+	@make test
+	@make lint
+	poetry run black --check
 
-build: check
-	poetry build
+build: ## Check and builds a package
+	@make check
+	@poetry build
+
+run_machine:
+	vagrant up; vagrant ssh
+
+remove_machine:
+	vagrant halt
+	vagrant destroy
+
+.PHONY: install format test lint selfcheck check build cc-coverage help
+
