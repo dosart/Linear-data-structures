@@ -9,6 +9,7 @@ test:  ## Run tests
 
 lint: ## Run linter
 	@poetry run flake8 data_structure
+	@poetry run flake8 calculations
 
 selfcheck: ## Checks the validity of the pyproject.toml file
 	@poetry check
