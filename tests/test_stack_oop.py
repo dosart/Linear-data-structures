@@ -109,3 +109,52 @@ def test_len_function():
     stack.push(13)
 
     assert len(stack) == 3
+
+
+def test_peek_function1():
+    stack = Stack()
+
+    stack.push(11)
+    stack.push(12)
+    stack.push(13)
+
+    assert stack.peek() == 13
+    assert stack.peek() == 13
+    assert stack.peek() == 13
+    assert len(stack) == 3
+
+
+def test_peek_function2():
+    stack = Stack()
+
+    stack.push(11)
+    stack.push(12)
+    stack.push(13)
+
+    assert stack.peek() == 13
+    assert stack.pop() == 13
+    assert len(stack) == 2
+
+    assert stack.peek() == 12
+    assert stack.pop() == 12
+    assert len(stack) == 1
+
+    assert stack.peek() == 11
+    assert stack.pop() == 11
+    assert len(stack) == 0
+
+
+def test_peek_function3():
+    stack = Stack()
+
+    stack.push(11)
+
+    assert stack.peek() == 11
+    assert stack.pop() == 11
+    assert len(stack) == 0
+
+    stack.push(12)
+    stack.push(13)
+    assert stack.peek() == 13
+    assert stack.pop() == 13
+    assert len(stack) == 1
