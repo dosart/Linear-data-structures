@@ -301,9 +301,9 @@ class LinkedList(object):
             index (int): index for check
 
         Returns:
-            value(bool): True if index >= 0 or index <= self._size
+            value(bool): True if index >= 0 or index < self._size
         """
-        return True if index >= 0 or index <= self._size
+        return index >= 0 and index < self._size
 
     def _find_by(self, index):
         current_id = 0
