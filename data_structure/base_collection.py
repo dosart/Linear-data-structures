@@ -34,6 +34,14 @@ class BaseCollection(object):
         """
         return self._size
 
+    def __iter__(self):
+        """Return iterator.
+
+        Returns:
+            iterator (BaseCollection): iterator
+        """
+        return iter(self._collection)
+
     @property
     def size(self):
         """Return size of stack.
@@ -95,4 +103,4 @@ class BaseCollection(object):
         """
         if position == Position.last:
             return self._collection[self._size - 1]
-        return self._collection.pop(0)
+        return self._collection[0]
