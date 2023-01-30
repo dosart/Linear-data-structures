@@ -158,3 +158,24 @@ def test_peek_function3():
     assert stack.peek() == 13
     assert stack.pop() == 13
     assert len(stack) == 1
+
+
+def test_stack_iterator():
+    stack = Stack()
+    stack.push(10)
+    stack.push(30)
+    stack.push(20)
+
+    for elem in stack:
+        pass
+
+
+def test_stack_pop_while():
+    values = [0, 1, 2, 3, 4, 5]
+    stack = Stack()
+
+    for value in values:
+        stack.push(value)
+
+    for value in stack.pop_while(lambda x: x != 2):
+        assert value > 1

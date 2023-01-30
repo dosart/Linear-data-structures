@@ -22,6 +22,14 @@ class Stack(object):
         """
         return str(self._stack)
 
+    def __iter__(self):
+        """Return self.
+
+        Returns:
+            iterator (Stack): iterator
+        """
+        return iter(self._stack)
+
     def __len__(self):
         """Return size of stack.
 
@@ -68,6 +76,22 @@ class Stack(object):
         if self.is_empty:
             raise CollectionIsEmptyExeption(stack_is_empty())
         return self._stack.extract()
+
+    def pop_while(self, comparator):
+        """Extract item while comparator is true.
+
+        Args:
+            comparator(function): return true or false
+
+        Yields:
+            item: item from stack
+        """
+        while not self.is_empty:
+            top_elem = self.peek()
+            if comparator(top_elem):
+                yield self.pop()
+            else:
+                break
 
     def peek(self):
         """Return the element at the top of the stack.
