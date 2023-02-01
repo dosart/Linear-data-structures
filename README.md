@@ -40,3 +40,7 @@ The project was made as part of the [Coding Interview University](https://github
 - [ ] value_n_from_end(n) - returns the value of the node at nth position from the end of the list
 - [ ] reverse() - reverses the list
 - [x] remove_value(value) - removes the first item in the list with this value
+
+### Calculations:
+- [x] implementation of the shunting station algorithm
+- [x] implementation of postfix expression calculations
